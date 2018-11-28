@@ -1,0 +1,123 @@
+package main
+import(
+"fmt"
+)
+// func main (){
+//   Looping()
+// }
+func Looping(){
+  for a:=1; a<=5; a++{
+    for b:=1; b<=5; b++{
+      if b == 1 || b ==5 {
+            fmt.Print("0")
+      }else {
+      if  a == 1 || a ==5 {
+              fmt.Print("0")
+      }else{
+        fmt.Print(" ")
+      }
+
+
+      }
+
+    }
+    fmt.Println()
+
+  }
+}
+
+
+
+
+// perhitungan
+var c, d = 20,10
+var e,f = 11, 5
+var angka uint
+var a= 10
+
+
+// func main() {
+	angka := 0
+	fmt.Print("Masukan Pilihan 1 s/d 10 : ")
+	fmt.Scanf("%d",&angka)
+	switch angka {
+	case 1:
+		for i:=0; i<=5; i++ {
+		fmt.Println("Angka 1")
+	}
+	case 2:
+		jumlah := model.Penjumlahan (c, d)
+		fmt.Print(jumlah)
+	fmt.Println("penjumlahan")
+case 3:
+	jumlah := model.Pengurangan (c, d)
+	fmt.Print(jumlah)
+fmt.Println(" pengurangan")
+case 4:
+	jumlah := model.Penbagian (c, d)
+	fmt.Print(jumlah)
+fmt.Println(" Pembagian")
+case 5:
+	jumlah := model.Perkalian (c, d)
+	fmt.Print(jumlah)
+fmt.Println(" perkalian")
+
+case 6:
+	jumlah := model.Pemangkatan (e,f)
+	fmt.Print(jumlah )
+fmt.Println(" pemangkatan ")
+
+case 7:
+	jumlah := model.Faktorial(f)
+	fmt.Print(jumlah )
+fmt.Println(" faktorial ")
+
+case 8 :
+	jumlah := model.BilGanjil(f)
+	fmt.Print(jumlah )
+	fmt.Println(" Bilangan Ganjil ")
+
+case 9 :
+	jumlah := model.BilGenap(f)
+	fmt.Print(jumlah )
+	fmt.Println(" Bilangan genap ")
+
+default:
+		fmt.Printf("hap")
+	}
+}
+
+
+type Joy struct{
+    Nama    string
+    Sekolah string
+}
+
+func (masuk Joy)String() string{
+  return fmt.Sprintf("Nama Saya  %v, Sekolah saya %v")
+}
+
+// var a,b,c = 5,6,4
+func main() {
+  masuk := map[string]Joy{
+    "Nama Saya"     : (Nama :"Anomsari", Sekolah :"rasta"),
+  }
+  for name, data := range masuk{
+    fmt.Printf("namaku %v :%v \n", name, data)
+  }
+}
+
+
+// tanggal
+var   waktu = time.Date(1996,9,29,0,0,0,0, time.UTC)
+
+ jum := model.Balok(a,b,c)
+fmt.Print(jum)
+}
+
+
+fmt.Print( model.StringSplit(tanggal))
+
+
+ day := model.TanggalLahir(waktu)
+ fmt.Printf("tanggal lahir = %v, tipenya %T.", brithday, brithday)

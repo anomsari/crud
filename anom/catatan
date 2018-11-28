@@ -1,0 +1,21 @@
+untuk men run test      :go test -v -run=(nama func)
+cara men save test      : (nama file)_test
+cara menulis func test  : Test(namafunc)
+
+--------------------------------------------------------------------------------------
+
+untuk memanggil beda file Func harus di deklar dengan huruf besar didepannya.
+formatnya               :Variabel.namaFunc
+importnya               :namaFolderInti/namaFolderFile
+
+--------------------------------------------------------------------------------------
+Printf                  : untuk print biasa
+Println                 : untuk print beda line
+Sprint                  : untuk print tipe string
+
+--------------------------------------------------------------------------------------
+run console : polymer serve, dapet link buat buka
+run golang  : go run (namafunc).go, buka localhost:(yg didefinisi)
+
+--------------------------------------------------------------------------------------
+baca cataatan di webnya
