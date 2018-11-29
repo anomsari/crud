@@ -8,12 +8,12 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import '@polymer/paper-input/paper-input.js';
-import '@polymer/iron-flex-layout/iron-flex-layout.js';
-import '@polymer/paper-item/paper-item.js';
-import '@polymer/iron-list/iron-list.js';
-import './shared-styles.js';
+ import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+ import '@polymer/paper-input/paper-input.js';
+ import '@polymer/iron-flex-layout/iron-flex-layout.js';
+ import '@polymer/paper-item/paper-item.js';
+ import '@polymer/iron-list/iron-list.js';
+ import './shared-styles.js';
 
 class MyNilai extends PolymerElement {
   static get template() {
@@ -72,8 +72,8 @@ class MyNilai extends PolymerElement {
             <div> npm   : [[item.npm]]</div>
             <div> uas  : [[item.uas]]</div>
             <div> uts : [[item.uts]]</div>
-            <div> total : [[item.total]]</div>
-            <div> ipk : [[item.ipk]]</div>
+            <!-- <div> total : [[item.total]]</div>
+            <div> ipk : [[item.ipk]]</div> -->
           </div>
           </div>
           </template>
@@ -88,18 +88,18 @@ class MyNilai extends PolymerElement {
 
   static get properties(){
     return{
-      nilai:{
-        type    :Object,
-        // notify  :true,
-        value:{
-          kd_mk:"",
-          npm:"",
-          uas:"",
-          uts:"",
-          total:"",
-          ipk:"",
-              }
-      },
+      // nilai:{
+      //   type    :Object,
+      //   // notify  :true,
+      //   value:{
+      //     kd_mk:"",
+      //     npm:"",
+      //     // uas:"",
+      //     // uts:"",
+      //     // total:"",
+      //     // ipk:"",
+      //         }
+      // },
       //contoh bikin data
       mhs:{
         type: Object,
@@ -107,31 +107,27 @@ class MyNilai extends PolymerElement {
           {
             kd_mk:"1si2",
             npm   :"51418634",
-            uas  :"56",
-            uts :"86",
-            total :"63",
-            ipk:"A",
+            uas  :56,
+            uts :86,
+
           },{
             kd_mk:"1ea2",
             npm   :"51418997",
-            uas  :"54",
-            uts :"75",
-            total :"86",
-            ipk:"A",
+            uas  :54,
+            uts :75,
+
           },{
             kd_mk:"1pa2",
             npm   :"51418462",
-            uas  :"42",
-            uts :"54",
-            total :"55",
-            ipk:"A",
+            uas  :42,
+            uts :54,
+
           },{
             kd_mk:"1st2",
             npm   :"51418451",
-            uas  :"85",
-            uts :"54",
-            total :"66",
-            ipk:"A",
+            uas  :85,
+            uts :54,
+
           }
         ]
       }
@@ -148,19 +144,40 @@ class MyNilai extends PolymerElement {
 
   _index(index){
     var a = parseInt(index+1);
-     return a
+     return a;
   }
 
-  _listChanged(e){
+  _listChanged(a){
+    if (a.detail.value){
 
-    if (e.detail.value){
-      let nilai = e.detail.value;
+    var nilai = a.detail.value;
+    let uts = nilai.uts;
+    let uas = nilai.uas;
+    let total = (nilai.uts+nilai.uas)/2;
+    let ipk ="";
+
+     if ( total> 80){
+      ipk = "A";
+    }else if ( total> 70){
+      ipk = "B";
+    }else if ( total> 60){
+      ipk = "C";
+    }else if(total > 50) {
+      ipk = "D";
+    }else{
+      ipk = "P";
+    }
+    // nilai.value = nilai.ipk;
+
+
+
       this.$.kd_mk.value = nilai.kd_mk;
       this.$.npm.value = nilai.npm;
       this.$.uas.value = nilai.uas;
       this.$.uts.value = nilai.uts;
-      this.$.total.value = nilai.total;
-      this.$.ipk.value = nilai.ipk;
+      this.$.total.value = total;
+      this.$.ipk.value = ipk;
+
     }
   }
 }
