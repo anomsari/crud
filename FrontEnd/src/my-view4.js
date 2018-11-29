@@ -10,6 +10,7 @@
 
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import './shared-styles.js';
+import '@polymer/iron-image/iron-image.js';
 
 class MyView4 extends PolymerElement {
   static get template() {
@@ -21,6 +22,8 @@ class MyView4 extends PolymerElement {
           padding: 10px;
         }
       </style>
+
+      <iron-image sizing="contain" fade src="http://lorempixel.com/600/400"></iron-image>
 
       <div class="card">
         <div class="circle">4</div>

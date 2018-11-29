@@ -8,12 +8,14 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import '@polymer/paper-input/paper-input.js';
-import '@polymer/iron-flex-layout/iron-flex-layout.js';
-import '@polymer/paper-item/paper-item.js';
-import '@polymer/iron-list/iron-list.js';
-import './shared-styles.js';
+ import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+ import '@polymer/paper-input/paper-input.js';
+ import '@polymer/paper-card/paper-card.js';
+ import '@polymer/iron-flex-layout/iron-flex-layout.js';
+ import '@polymer/paper-item/paper-item.js';
+ import '@polymer/iron-list/iron-list.js';
+ import '@polymer/iron-media-query/iron-media-query.js';
+ import './shared-styles.js';
 
 class MyMatakuliah extends PolymerElement {
   static get template() {
@@ -43,7 +45,23 @@ class MyMatakuliah extends PolymerElement {
           background-color: green;
           cursor : pointer;
         }
+
+        .kartu-mobile{
+          margin: 24px;
+          padding: 16px;
+          color: white;
+          border-radius: 5px;
+          background-color: blue;
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+        }
+        .kartu-mobile:hover{
+          background-color: red;
+          cursor : pointer;
+        }
       </style>
+
+     <iron-media-query query="(min-width : 641px)" query-matches="{{desktop}}"> </iron-media-query>
 
       <div class="card">
         <div class="circle">1</div>
@@ -57,7 +75,8 @@ class MyMatakuliah extends PolymerElement {
         <label>Kelas : </label><label id="kelasnya"></label><br> -->
 
         <br>
-        <!-- masukin data dummy pake list -->
+        <template is="dom-if" if="{{desktop}}">
+        <!-- masukin data dummy pake list/ tampilan desktop -->
         <iron-list items="[[mhs]]" as="item" on-selected-item-changed="_listChanged" selection-enabled>
           <template>
           <div>
@@ -69,13 +88,29 @@ class MyMatakuliah extends PolymerElement {
           </div>
           </template>
         </iron-list>
+        </template>
+
+
+        <template is="dom-if" if="{{!desktop}}">
+        <!-- masukin data dummy pake list/ tampilan hp -->
+        <iron-list items="[[mhs]]" as="item" on-selected-item-changed="_listChanged" selection-enabled>
+          <template>
+          <div>
+          <div class="kartu-mobile" npm$="[[item.npm]]" >
+            <div> no    :[[_index(index)]]</div>
+            <div> kd_mk   : [[item.kd_mk]]</div>
+            <div> mata_kuliah  : [[item.mata_kuliah]]</div>
+          </div>
+          </div>
+          </template>
+        </iron-list>
+        </template>
         <!-- <p id="npmnya"></p>
         <p id="namanya"></p>
         <p id="kelasnya"></p> -->
-
       </div>
-    `;
-  }
+     `;
+   }
 
   static get properties(){
     return{
@@ -98,8 +133,7 @@ class MyMatakuliah extends PolymerElement {
           },{
             kd_mk   :"1ea2",
             mata_kuliah  :"Sistem Data",
-
-         },{
+          },{
             kd_mk   :"1pa2",
             mata_kuliah  :"Sistem Terdistribusi",
 

@@ -10,9 +10,13 @@
 
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/paper-input/paper-input.js';
+import '@polymer/paper-card/paper-card.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
 import '@polymer/paper-item/paper-item.js';
+import '@polymer/paper-item/paper-icon-item.js';
 import '@polymer/iron-list/iron-list.js';
+import '@polymer/iron-media-query/iron-media-query.js';
+import '@polymer/paper-fab/paper-fab.js';
 import './shared-styles.js';
 
 class MyMahasiswa extends PolymerElement {
@@ -31,47 +35,97 @@ class MyMahasiswa extends PolymerElement {
           @apply -- layout-horizontal;
         }
         .kartu{
-          margin: 24px;
-          padding: 16px;
-          color: white;
-          border-radius: 5px;
-          background-color: pink;
-          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-
+          border-collapse: collapse;
+          width: 100%;
+          text-align: left;
+          padding: 2px;
         }
+
         .kartu:hover{
           background-color: green;
           cursor : pointer;
         }
+        .kartu-mobile{
+          border-collapse: collapse;
+          width: 100%;
+          text-align: left;
+          padding: 2px;
+        }
+        .kartu-mobile:hover{
+          background-color: red;
+          cursor : pointer;
+        }
+
+        .paper-fab[label=Y]{
+        front-weight :400px;
+        front-size   :200px;
+        }
+
+        .paper-fab[label=Z]{
+        front-weight :400px;
+        front-size   :200px;
+        }
+        .margin{
+          margin-left 10px;
+        }
       </style>
+
+      <!-- <app-header-layout has-scro-religion style="width:100%; height:100vh;">
+           <app-header class ="header" slot="header"fixed effects="waterfall">
+           </app-header>         -->
+
 
       <div class="card">
         <div class="circle">1</div>
         <h1>Mahasiswa</h1>
+        <paper-item class="horizontal">
+        <paper-input id="npm" label="search" on-change="_change" ></paper-input>
 
-        <paper-input id="npm" label="NPM" on-change="_change" readonly></paper-input>
-        <paper-input id="nama" label="Nama" on-change="_change"readonly></paper-input>
-        <paper-input id="kelas" label="Kelas" on-change="_change"readonly></paper-input>
-
+        </paper-item>
         <br>
         <!-- <label>NPM   : </label><label id="npmnya"></label><br>
         <label>Nama  : </label><label id="namanya"></label><br>
         <label>Kelas : </label><label id="kelasnya"></label><br> -->
 
+        <iron-media-query query="(min-width : 641px)" query-matches="{{desktop}}"> </iron-media-query>
+
         <br>
-        <!-- masukin data dummy pake list -->
+        <template is="dom-if" if="{{desktop}}">
+        <!-- masukin data dummy pake list/ tampilan desktop-->
         <iron-list items="[[mhs]]" as="item" on-selected-item-changed="_listChanged" selection-enabled>
           <template>
           <div>
-          <div class="kartu" npm$="[[item.npm]]" >
-            <div> no    :[[_index(index)]]</div>
-            <div> npm   : [[item.npm]]</div>
-            <div> nama  : [[item.nama]]</div>
-            <div> kelas : [[item.kelas]]</div>
+          <paper-item class="kartu horizontal" npm$="[[item.npm]]">
+
+            <div style="width :20%"> [[item.npm]]</div>
+            <div style="width :30%"> [[item.nama]]</div>
+            <div style="width :30%"> [[item.kelas]]</div>
           </div>
-          </div>
+          </paper-item>
+          <!-- </div> -->
           </template>
         </iron-list>
+        </template>
+
+
+        <template is="dom-if" if="{{!desktop}}">
+        <!-- masukin data dummy pake list/ tampilan hp -->
+        <iron-list items="[[mhs]]" as="item" on-selected-item-changed="_listChanged" selection-enabled>
+          <template>
+          <div>
+            <paper-item class="kartu-mobile horizontal" npm$="[[item.npm]]">
+            <paper-fab label="[[_substring(item.nama)]]">  </paper-fab>
+            <div class="vertical margin">
+            <div style="width :20%"> [[item.npm]]</div>
+            <div style="width :30%"> [[item.nama]]</div>
+            <div style="width :30%"> [[item.kelas]]</div>
+          </div>
+          </div>
+          </paper-item>
+
+          </template>
+        </iron-list>
+        </template>
         <!-- <p id="npmnya"></p>
         <p id="namanya"></p>
         <p id="kelasnya"></p> -->
@@ -117,6 +171,13 @@ class MyMahasiswa extends PolymerElement {
     };
 
 
+  }
+
+  _substring(s){
+
+    var str = s.substring(0, 1);
+    var sub = str.toUpperCase();
+    return sub
   }
 
   _change(e){

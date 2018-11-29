@@ -28,6 +28,16 @@ class MyView3 extends PolymerElement {
         <p>Modus commodo minimum eum te, vero utinam assueverit per eu.</p>
         <p>Ea duis bonorum nec, falli paulo aliquid ei eum.Has at minim mucius aliquam, est id tempor laoreet.Pro saepe pertinax ei, ad pri animal labores suscipiantur.</p>
       </div>
+<!--
+      <iron-ajax
+          auto
+          url="https://www.googleapis.com/youtube/v3/search"
+          params='{"part":"snippet", "q":"polymer", "key": "YOUTUBE_API_KEY", "type": "video"}'
+          handle-as="json"
+          on-response="handleResponse"
+          debounce-duration="300">
+      </iron-ajax>
+   -->
     `;
   }
 }
