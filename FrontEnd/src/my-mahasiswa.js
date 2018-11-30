@@ -120,9 +120,7 @@ class MyMahasiswa extends PolymerElement {
             <div style="width :30%"> [[item.nama]]</div>
             <div style="width :30%"> [[item.kelas]]</div>
           </div>
-          </div>
           </paper-item>
-
           </template>
         </iron-list>
         </template>
